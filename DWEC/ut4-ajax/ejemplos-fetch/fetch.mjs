@@ -25,6 +25,9 @@
     //.catch(error => console.error('Error:', error))
  //   .then(response => console.log('Success:', response));
 
+
+import * as http from './http.mjs';
+
 const botonEnviar = document.getElementById('enviar');
 const inputUrl = document.getElementById('url');
 const inputMetodo = document.getElementById('metodo');
@@ -37,17 +40,14 @@ window.addEventListener('load', () => {
 
 
 function onEnviarClick(event) {
-
-    const metodo = getEllementById('metodo');
-    const url = getEllementById('url');
+    const metodo = inputMetodo.value;
 
     switch (metodo) {
         case 'GET': get(); break
         case 'POST': post(); break
         case 'PUT': put(); break
-        case 'DEL': del(); break
+        case 'DELETE': eliminar(); break
     }
-
 }
 
 function get() {
@@ -55,8 +55,29 @@ function get() {
     const url = inputUrl.value;
     http.get(url)
     .then(response => response.text())
-    .then(texto => respuesta.value = texto)
+    .then(texto => Respuesta.value = texto)
     .catch(error => {
         Respuesta.value = error.message;
     });
+}
+
+function post() {
+    http.post(inputUrl.value, Peticion.value)
+    .then(response => response.text())
+    .then(texto => Respuesta.value = texto)
+    .catch(error => Respuesta.value = error.message);
+}
+
+function put() {
+    http.put(inputUrl.value, Peticion.value)
+    .then(response => response.text())
+    .then(texto => Respuesta.value = texto)
+    .catch(error => Respuesta.value = error.message);
+}
+
+function eliminar() {
+    http.eliminar(inputUrl.value)
+    .then(response => response.text())
+    .then(texto => Respuesta.value = texto)
+    .catch(error => Respuesta.value = error.message);
 }
