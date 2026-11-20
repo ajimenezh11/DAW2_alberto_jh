@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../ut4-ajax/lista-compra/json-server-root"
+		},
+		{
+			"path": "../../.."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "DAW2_alberto_jh"
+	}
+}
